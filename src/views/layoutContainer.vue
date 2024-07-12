@@ -5,6 +5,7 @@ import musicHeader from '@/components/musicHeader.vue'
 <template>
   <div class="main">
     <musicHeader />
+    <router-view />
   </div>
 </template>
 
