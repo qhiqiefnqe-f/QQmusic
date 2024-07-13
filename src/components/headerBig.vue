@@ -1,14 +1,15 @@
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 const router = useRouter()
+const route = useRoute()
 
 const items = [
   { name: '音乐馆', path: '/musicHouse' },
   { name: '我的音乐', path: '/myMusic' },
   { name: '客户端', path: '/clientEnd' },
   { name: '开放平台', path: '/openPlatform' },
-  { name: 'VIP', path: 'vipPart' }
+  { name: 'VIP', path: '/vipPart' }
 ]
 const search = [
   { name: '离别开出花', data: '503.7万' },
@@ -17,16 +18,18 @@ const search = [
   { name: '若月亮没来', data: '364.2万' },
   { name: '2002年的第一场雪', data: '359.2万' }
 ]
-const activeIndex = ref(0) // 使用ref来创建响应式数据
+
 const isFocused = ref(false)
 const showDropdown = ref(false)
 const hoveringOverDropdown = ref(false)
 let timeoutId = null // 用于跟踪setTimeout的ID
 
 function setActive(index) {
-  activeIndex.value = index // 更新响应式数据的值
   const item = items[index]
   router.push(item.path)
+}
+const isActiveRoute = (itemPath) => {
+  return route.path === itemPath
 }
 function handleMouseOut() {
   // 清除之前的setTimeout
@@ -50,7 +53,7 @@ function handleMouseOut() {
         <li
           v-for="(item, index) in items"
           :key="index"
-          :class="{ active: activeIndex === index }"
+          :class="{ active: isActiveRoute(item.path) }"
           @mouseover="index === 2 ? (showDropdown = true) : null"
           @mouseout="index === 2 ? (showDropdown = false) : null"
           @click="setActive(index)"
