@@ -1,10 +1,10 @@
 <script setup>
-import musicRecommend from '@/components/homePage/musicRecommend.vue'
+import musicListRecommend from '@/components/homePage/musicListRecommend.vue'
 </script>
 
 <template>
   <div class="homePage">
-    <musicRecommend></musicRecommend>
+    <musicListRecommend></musicListRecommend>
   </div>
 </template>
 

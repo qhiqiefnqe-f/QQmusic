@@ -293,7 +293,7 @@ button.vip {
   /* 样式调整 */
   position: absolute;
   width: 218px; /* 或根据需要调整 */
-  height: 260px;
+  height: 235px;
   background-color: white;
   border: 1px solid #c9c9c9;
 
