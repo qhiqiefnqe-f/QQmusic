@@ -1,11 +1,11 @@
 <script setup>
 import { ref } from 'vue'
-import { useforYouStore } from '@/stores/forYou.js'
-import { useloveSongStore } from '@/stores/loveSong.js'
-import { useenglishSongStore } from '@/stores/englishSong.js'
-import { useclassicSongStore } from '@/stores/classicSong.js'
-import { useofficialSongStore } from '@/stores/officialSong.js'
-import { usewebSongStore } from '@/stores/webSong.js'
+import { useforYouStore } from '@/stores/musicListRecommend/forYou.js'
+import { useloveSongStore } from '@/stores/musicListRecommend/loveSong.js'
+import { useenglishSongStore } from '@/stores/musicListRecommend/englishSong.js'
+import { useclassicSongStore } from '@/stores/musicListRecommend/classicSong.js'
+import { useofficialSongStore } from '@/stores/musicListRecommend/officialSong.js'
+import { usewebSongStore } from '@/stores/musicListRecommend/webSong.js'
 
 const forYouStore = useforYouStore()
 const loveSongStore = useloveSongStore()

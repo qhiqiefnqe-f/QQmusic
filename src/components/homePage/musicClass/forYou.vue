@@ -1,6 +1,6 @@
 <script setup>
 import { watch, computed } from 'vue'
-import { useforYouStore } from '@/stores/forYou'
+import { useforYouStore } from '@/stores/musicListRecommend/forYou'
 const forYouStore = useforYouStore()
 
 const transitionName = computed(() => {
@@ -150,6 +150,7 @@ watch(
   }
   .dots {
     margin: 0;
+    padding: 0;
     padding-bottom: 20px;
     list-style: none;
     display: flex;

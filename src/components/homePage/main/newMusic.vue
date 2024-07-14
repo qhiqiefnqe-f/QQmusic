@@ -1,43 +1,36 @@
 <script setup>
 import { ref } from 'vue'
-import { useforYouStore } from '@/stores/forYou.js'
-import { useloveSongStore } from '@/stores/loveSong.js'
-import { useenglishSongStore } from '@/stores/englishSong.js'
-import { useclassicSongStore } from '@/stores/classicSong.js'
-import { useofficialSongStore } from '@/stores/officialSong.js'
-import { usewebSongStore } from '@/stores/webSong.js'
-const forYouStore = useforYouStore()
-const loveSongStore = useloveSongStore()
-const englishSongStore = useenglishSongStore()
-const classicSongStore = useclassicSongStore()
-const officialSongStore = useofficialSongStore()
-const webSongStore = usewebSongStore()
+import { usetheLatestStore } from '@/stores/newMusic/theLatest.js'
+import { usetheEnglishStore } from '@/stores/newMusic/theEnglish.js'
+import { usetheLandStore } from '@/stores/newMusic/theLand.js'
+import { usetheSonsStore } from '@/stores/newMusic/theSons.js'
+
+const theLatestStore = usetheLatestStore()
+const theEnglishStore = usetheEnglishStore()
+const theLandStore = usetheLandStore()
+const theSonsStore = usetheSonsStore()
 
 function triggerChange(n) {
-  if (currentView.value == 'forYou') forYouStore.changeImageSet(n)
-  if (currentView.value == 'loveSong') loveSongStore.changeImageSet(n)
-  if (currentView.value == 'englishSong') englishSongStore.changeImageSet(n)
-  if (currentView.value == 'classicSong') classicSongStore.changeImageSet(n)
-  if (currentView.value == 'officialSong') officialSongStore.changeImageSet(n)
-  if (currentView.value == 'webSong') webSongStore.changeImageSet(n)
+  console.log('1')
+  if (currentView.value == 'theLatest') theLatestStore.changeImageSet(n)
+  if (currentView.value == 'theEnglish') theEnglishStore.changeImageSet(n)
+  if (currentView.value == 'theLand') theLandStore.changeImageSet(n)
+  if (currentView.value == 'theSons') theSonsStore.changeImageSet(n)
 }
 
-import classicSong from '@/components/homePage/musicClass/classicSong.vue'
-import englishSong from '@/components/homePage/musicClass/englishSong.vue'
-import officialSong from '@/components/homePage/musicClass/officialSong.vue'
-import forYou from '@/components/homePage/musicClass/forYou.vue'
-import loveSong from '@/components/homePage/musicClass/loveSong.vue'
-import webSong from '@/components/homePage/musicClass/webSong.vue'
+import theLatest from '@/components/homePage/areas/theLatest.vue'
+import theEnglish from '@/components/homePage/areas/theEnglish.vue'
+import theLand from '@/components/homePage/areas/theLand.vue'
+import theSons from '@/components/homePage/areas/theSons.vue'
+
 const items = [
-  { cn: '为你推荐', en: 'forYou' },
-  { cn: '情歌', en: 'loveSong' },
-  { cn: '网络歌曲', en: 'webSong' },
-  { cn: '英语', en: 'englishSong' },
-  { cn: '官方歌单', en: 'officialSong' },
-  { cn: '经典', en: 'classicSong' }
+  { cn: '最新', en: 'theLatest' },
+  { cn: '内地', en: 'theLand' },
+  { cn: '港台', en: 'theSons' },
+  { cn: '欧美', en: 'theEnglish' }
 ]
 
-const currentView = ref('forYou')
+const currentView = ref('theLatest')
 const changeCurrentView = (partname) => {
   currentView.value = partname
 }
@@ -55,7 +48,7 @@ const handleMouseLeave = () => {
 
 <template>
   <div
-    class="musicRecommend"
+    class="newMusic"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   >
@@ -81,7 +74,21 @@ const handleMouseLeave = () => {
       </div>
     </transition>
 
-    <h2>歌单推荐</h2>
+    <h2>新歌首发</h2>
+    <div class="playAll">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="#666666"
+          d="M18.54 9L8.88 3.46a3.42 3.42 0 0 0-5.13 3v11.12A3.42 3.42 0 0 0 7.17 21a3.43 3.43 0 0 0 1.71-.46L18.54 15a3.42 3.42 0 0 0 0-5.92Zm-1 4.19l-9.66 5.62a1.44 1.44 0 0 1-1.42 0a1.42 1.42 0 0 1-.71-1.23V6.42a1.42 1.42 0 0 1 .71-1.23A1.51 1.51 0 0 1 7.17 5a1.54 1.54 0 0 1 .71.19l9.66 5.58a1.42 1.42 0 0 1 0 2.46Z"
+        />
+      </svg>
+      播放全部
+    </div>
     <ul class="difParts">
       <li
         v-for="(item, index) in items"
@@ -92,12 +99,11 @@ const handleMouseLeave = () => {
         {{ item.cn }}
       </li>
     </ul>
-    <forYou v-show="currentView === 'forYou'" />
-    <loveSong v-show="currentView === 'loveSong'" />
-    <webSong v-show="currentView === 'webSong'" />
-    <englishSong v-show="currentView === 'englishSong'" />
-    <officialSong v-show="currentView === 'officialSong'" />
-    <classicSong v-show="currentView === 'classicSong'" />
+    <theLatest v-show="currentView === 'theLatest'" />
+    <theEnglish v-show="currentView === 'theEnglish'" />
+    <theLand v-show="currentView === 'theLand'" />
+    <theSons v-show="currentView === 'theSons'" />
+
     <transition name="slide">
       <div
         class="sideDiv right"
@@ -123,6 +129,24 @@ const handleMouseLeave = () => {
 </template>
 
 <style lang="scss" scoped>
+.playAll {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 80px;
+  left: 20px;
+  width: 130px;
+  height: 40px;
+  border-radius: 3px;
+  border: 1px solid #c9c9c9;
+  transition: all 0.5s ease;
+  font-size: 15px;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(120, 120, 120, 0.3);
+  }
+}
 .sideDiv {
   display: flex;
   justify-content: center;
@@ -147,13 +171,13 @@ const handleMouseLeave = () => {
 .right {
   right: 0px; // 根据需要调整
 }
-.musicRecommend {
+.newMusic {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 532px;
+  height: 560px;
   background-image: linear-gradient(to bottom, #f2f2f2, white);
   h2 {
     font-size: 2em;

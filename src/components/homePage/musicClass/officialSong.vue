@@ -1,6 +1,6 @@
 <script setup>
 import { watch, computed } from 'vue'
-import { useofficialSongStore } from '@/stores/officialSong'
+import { useofficialSongStore } from '@/stores/musicListRecommend/officialSong'
 const officialSongStore = useofficialSongStore()
 
 const transitionName = computed(() => {
@@ -150,6 +150,7 @@ watch(
   }
   .dots {
     margin: 0;
+    padding: 0;
     padding-bottom: 20px;
     list-style: none;
     display: flex;
