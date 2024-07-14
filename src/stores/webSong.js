@@ -126,6 +126,7 @@ export const usewebSongStore = defineStore('imageStore3', {
   }),
   actions: {
     changeImageSet(setNumber) {
+      console.log('1')
       this.activeSet =
         (this.activeSet + setNumber + this.imagesCount) % this.imagesCount ||
         this.imagesCount

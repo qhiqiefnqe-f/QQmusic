@@ -2,12 +2,25 @@
 import { ref } from 'vue'
 import { useforYouStore } from '@/stores/forYou.js'
 import { useloveSongStore } from '@/stores/loveSong.js'
+import { useenglishSongStore } from '@/stores/englishSong.js'
+import { useclassicSongStore } from '@/stores/classicSong.js'
+import { useofficialSongStore } from '@/stores/officialSong.js'
+import { usewebSongStore } from '@/stores/webSong.js'
+
 const forYouStore = useforYouStore()
 const loveSongStore = useloveSongStore()
+const englishSongStore = useenglishSongStore()
+const classicSongStore = useclassicSongStore()
+const officialSongStore = useofficialSongStore()
+const webSongStore = usewebSongStore()
 
 function triggerChange(n) {
   if (currentView.value == 'forYou') forYouStore.changeImageSet(n)
   if (currentView.value == 'loveSong') loveSongStore.changeImageSet(n)
+  if (currentView.value == 'englishSong') englishSongStore.changeImageSet(n)
+  if (currentView.value == 'classicSong') classicSongStore.changeImageSet(n)
+  if (currentView.value == 'officialSong') officialSongStore.changeImageSet(n)
+  if (currentView.value == 'webSong') webSongStore.changeImageSet(n)
 }
 
 import classicSong from '@/components/homePage/musicClass/classicSong.vue'
