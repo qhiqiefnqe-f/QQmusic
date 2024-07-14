@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export const useforYouStore = defineStore('imageStore1', {
+export const useofficialSongStore = defineStore('imageStore5', {
   state: () => ({
     imagesCount: 3, // 图片集的数量
     activeSet: 1, // 记录当前激活的图片集编号，默认为1

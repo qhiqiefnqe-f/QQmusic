@@ -1,7 +1,7 @@
 <script setup>
 import { watch, computed } from 'vue'
-import { useImageStore } from '@/stores/forYou'
-const forYouStore = useImageStore()
+import { useforYouStore } from '@/stores/forYou'
+const forYouStore = useforYouStore()
 
 const transitionName = computed(() => {
   return forYouStore.activeSet > forYouStore.lastActiveSet

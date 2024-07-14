@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export const useforYouStore = defineStore('imageStore1', {
+export const useloveSongStore = defineStore('imageStore2', {
   state: () => ({
     imagesCount: 3, // 图片集的数量
     activeSet: 1, // 记录当前激活的图片集编号，默认为1
@@ -10,8 +10,8 @@ export const useforYouStore = defineStore('imageStore1', {
     images1: [
       {
         id: 1,
-        url: new URL('@/assets/foryou/300.png', import.meta.url).href,
-        title: '神仙打架！演绎1+1＞2的经典合作',
+        url: new URL('@/assets/foryou/301.png', import.meta.url).href,
+        title: '芜湖',
         data: '播放量：1158.3万'
       },
       {
@@ -20,22 +20,22 @@ export const useforYouStore = defineStore('imageStore1', {
           '@/assets/foryou/761f6ab38fa930ec1ad1231ad1c2c513e383df0b_1fafbf.png',
           import.meta.url
         ).href,
-        title: '抖音超热中文歌：一次听个够',
+        title: '雅虎',
         data: '播放量：1371.1万'
       },
       {
         id: 3,
         url: new URL(
-          '@/assets/foryou/110b26c32a979f0f7ee6d964f905ea072efde919_403503.PNG',
+          '@/assets/foryou/761f6ab38fa930ec1ad1231ad1c2c513e383df0b_1fafbf.png',
           import.meta.url
         ).href,
-        title: '高考战歌|不负年华纪念励志青春',
+        title: '一哈',
         data: '播放量：11.9万'
       },
       {
         id: 4,
         url: new URL('@/assets/foryou/301.png', import.meta.url).href,
-        title: '抖音超火热歌榜（持续更新）',
+        title: '咕噜咕噜',
         data: '播放量：2039.4万'
       },
       {
@@ -44,7 +44,7 @@ export const useforYouStore = defineStore('imageStore1', {
           '@/assets/foryou/5bef2d9a8606f9ae54e18aabe152a732cc615e27_50f17.png',
           import.meta.url
         ).href,
-        title: '周杰伦 · 翻开12月的回忆',
+        title: '居居帮',
         data: '播放量：1.1亿'
       }
     ],

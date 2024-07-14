@@ -242,6 +242,7 @@ button.vip {
   box-shadow: 0 0 5px #c9c9c9;
   top: 77%;
   left: 44%;
+  z-index: 1;
   div {
     padding: 1px;
     display: flex;
@@ -300,6 +301,7 @@ button.vip {
   /* 确保下拉框位于输入框下方 */
   top: 69%;
   left: 8%;
+  z-index: 1;
   ul {
     height: 80%;
     width: 100%;

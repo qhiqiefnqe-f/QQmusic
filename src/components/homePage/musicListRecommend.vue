@@ -1,10 +1,13 @@
 <script setup>
 import { ref } from 'vue'
-import { useImageStore } from '@/stores/forYou.js'
-const imgStore = useImageStore()
+import { useforYouStore } from '@/stores/forYou.js'
+import { useloveSongStore } from '@/stores/loveSong.js'
+const forYouStore = useforYouStore()
+const loveSongStore = useloveSongStore()
 
 function triggerChange(n) {
-  imgStore.changeImageSet(n)
+  if (currentView.value == 'forYou') forYouStore.changeImageSet(n)
+  if (currentView.value == 'loveSong') loveSongStore.changeImageSet(n)
 }
 
 import classicSong from '@/components/homePage/musicClass/classicSong.vue'
@@ -13,9 +16,19 @@ import officialSong from '@/components/homePage/musicClass/officialSong.vue'
 import forYou from '@/components/homePage/musicClass/forYou.vue'
 import loveSong from '@/components/homePage/musicClass/loveSong.vue'
 import webSong from '@/components/homePage/musicClass/webSong.vue'
-const items = ['为你推荐', '情歌', '网络歌曲', '英语', '官方歌单', '经典']
+const items = [
+  { cn: '为你推荐', en: 'forYou' },
+  { cn: '情歌', en: 'loveSong' },
+  { cn: '网络歌曲', en: 'webSong' },
+  { cn: '英语', en: 'englishSong' },
+  { cn: '官方歌单', en: 'officialSong' },
+  { cn: '经典', en: 'classicSong' }
+]
 
 const currentView = ref('forYou')
+const changeCurrentView = (partname) => {
+  currentView.value = partname
+}
 
 const showSideDivs = ref(false)
 
@@ -57,9 +70,14 @@ const handleMouseLeave = () => {
     </transition>
 
     <h2>歌单推荐</h2>
-    <ul>
-      <li v-for="(item, index) in items" :key="index">
-        {{ item }}
+    <ul class="difParts">
+      <li
+        v-for="(item, index) in items"
+        :key="index"
+        @click="changeCurrentView(item.en)"
+        :class="{ active: currentView === item.en }"
+      >
+        {{ item.cn }}
       </li>
     </ul>
     <forYou v-show="currentView === 'forYou'" />
@@ -132,7 +150,7 @@ const handleMouseLeave = () => {
     margin-top: 50px;
     margin-bottom: 20px;
   }
-  ul {
+  ul.difParts {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -142,9 +160,16 @@ const handleMouseLeave = () => {
     margin: 0;
 
     li {
+      cursor: pointer;
       padding: 10px;
       margin-left: 10px;
       margin-right: 10px;
+      &:hover {
+        color: #31c27c;
+      }
+    }
+    li.active {
+      color: #31c27c;
     }
   }
 }
