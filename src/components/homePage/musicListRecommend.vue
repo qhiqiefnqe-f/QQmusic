@@ -3,8 +3,8 @@ import { ref } from 'vue'
 import { useImageStore } from '@/stores/forYou.js'
 const imgStore = useImageStore()
 
-function triggerChange() {
-  imgStore.changeImageSet()
+function triggerChange(n) {
+  imgStore.changeImageSet(n)
 }
 
 import classicSong from '@/components/homePage/musicClass/classicSong.vue'
@@ -35,7 +35,11 @@ const handleMouseLeave = () => {
     @mouseleave="handleMouseLeave"
   >
     <transition name="slide">
-      <div class="sideDiv left" v-show="showSideDivs">
+      <div
+        class="sideDiv left"
+        v-show="showSideDivs"
+        @click="triggerChange(-1)"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="50"
@@ -65,7 +69,11 @@ const handleMouseLeave = () => {
     <officialSong v-show="currentView === 'officialSong'" />
     <classicSong v-show="currentView === 'classicSong'" />
     <transition name="slide">
-      <div class="sideDiv right" v-show="showSideDivs" @click="triggerChange">
+      <div
+        class="sideDiv right"
+        v-show="showSideDivs"
+        @click="triggerChange(1)"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="50"

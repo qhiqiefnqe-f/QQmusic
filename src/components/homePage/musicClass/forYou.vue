@@ -1,154 +1,33 @@
 <script setup>
-import { onMounted, ref, watch, computed } from 'vue'
-
-const imagesCount = ref(3) // 图片集的数量
-
-const currentImages = ref([]) // 当前显示的图片集
-const activeSet = ref(1) // 记录当前激活的图片集编号，默认为1
-const lastActiveSet = ref(0)
-
-const changeImageSet = (setNumber) => {
-  currentImages.value = eval(`images${setNumber}`).value
-  activeSet.value = setNumber // 更新当前激活的图片集编号
-}
-
-onMounted(() => {
-  changeImageSet(1)
-})
+import { watch, computed } from 'vue'
+import { useImageStore } from '@/stores/forYou'
+const forYouStore = useImageStore()
 
 const transitionName = computed(() => {
-  return activeSet.value > lastActiveSet.value ? 'slide-grow' : 'slide-shrink'
+  return forYouStore.activeSet > forYouStore.lastActiveSet
+    ? 'slide-grow'
+    : 'slide-shrink'
 })
 
 // 监听activeSet的变化
-watch(activeSet, (newVal, oldVal) => {
-  lastActiveSet.value = oldVal
-  // 这里可以根据需要更新showContent来触发动画
-})
-
-const images1 = ref([
-  {
-    id: 1,
-    url: new URL('@/assets/foryou/300.png', import.meta.url).href,
-    title: '神仙打架！演绎1+1＞2的经典合作',
-    data: '播放量：1158.3万'
-  },
-  {
-    id: 2,
-    url: new URL(
-      '@/assets/foryou/761f6ab38fa930ec1ad1231ad1c2c513e383df0b_1fafbf.png',
-      import.meta.url
-    ).href,
-    title: '抖音超热中文歌：一次听个够',
-    data: '播放量：1371.1万'
-  },
-  {
-    id: 3,
-    url: new URL(
-      '@/assets/foryou/110b26c32a979f0f7ee6d964f905ea072efde919_403503.PNG',
-      import.meta.url
-    ).href,
-    title: '高考战歌|不负年华纪念励志青春',
-    data: '播放量：11.9万'
-  },
-  {
-    id: 4,
-    url: new URL('@/assets/foryou/301.png', import.meta.url).href,
-    title: '抖音超火热歌榜（持续更新）',
-    data: '播放量：2039.4万'
-  },
-  {
-    id: 5,
-    url: new URL(
-      '@/assets/foryou/5bef2d9a8606f9ae54e18aabe152a732cc615e27_50f17.png',
-      import.meta.url
-    ).href,
-    title: '周杰伦 · 翻开12月的回忆',
-    data: '播放量：1.1亿'
+watch(
+  () => forYouStore.activeSet,
+  (newVal, oldVal) => {
+    forYouStore.lastActiveSet = oldVal
+    // 这里可以根据需要更新showContent来触发动画
   }
-])
-
-const images2 = ref([
-  {
-    id: 1,
-    url: new URL('@/assets/foryou/300.png', import.meta.url).href,
-    title: '神仙打架！演绎1+1＞2的经典合作',
-    data: '播放量：1158.3万'
-  },
-  {
-    id: 2,
-    url: new URL(
-      '@/assets/foryou/761f6ab38fa930ec1ad1231ad1c2c513e383df0b_1fafbf.png',
-      import.meta.url
-    ).href,
-    title: '抖音超热中文歌：一次听个够',
-    data: '播放量：1371.1万'
-  },
-  {
-    id: 3,
-    url: new URL(
-      '@/assets/foryou/110b26c32a979f0f7ee6d964f905ea072efde919_403503.PNG',
-      import.meta.url
-    ).href,
-    title: '高考战歌|不负年华纪念励志青春',
-    data: '播放量：11.9万'
-  },
-  {
-    id: 4,
-    url: new URL('@/assets/foryou/301.png', import.meta.url).href,
-    title: '抖音超火热歌榜（持续更新）',
-    data: '播放量：2039.4万'
-  },
-  {
-    id: 5,
-    url: new URL('@/assets/foryou/301.png', import.meta.url).href,
-    title: '周杰伦 · 翻开12月的回忆',
-    data: '播放量：1.1亿'
-  }
-])
-
-const images3 = ref([
-  {
-    id: 1,
-    url: new URL('@/assets/foryou/300.png', import.meta.url).href,
-    title: '神仙打架！演绎1+1＞2的经典合作',
-    data: '播放量：1158.3万'
-  },
-  {
-    id: 2,
-    url: new URL(
-      '@/assets/foryou/761f6ab38fa930ec1ad1231ad1c2c513e383df0b_1fafbf.png',
-      import.meta.url
-    ).href,
-    title: '抖音超热中文歌：一次听个够',
-    data: '播放量：1371.1万'
-  },
-  {
-    id: 3,
-    url: new URL('@/assets/foryou/301.png', import.meta.url).href,
-    title: '高考战歌|不负年华纪念励志青春',
-    data: '播放量：11.9万'
-  },
-  {
-    id: 4,
-    url: new URL('@/assets/foryou/301.png', import.meta.url).href,
-    title: '抖音超火热歌榜（持续更新）',
-    data: '播放量：2039.4万'
-  },
-  {
-    id: 5,
-    url: new URL('@/assets/foryou/301.png', import.meta.url).href,
-    title: '周杰伦 · 翻开12月的回忆',
-    data: '播放量：1.1亿'
-  }
-])
+)
 </script>
 
 <template>
   <div class="gallery">
     <transition :name="transitionName" mode="out-in">
-      <div class="musicPart" :key="activeSet">
-        <div class="perMusic" v-for="image in currentImages" :key="image.id">
+      <div class="musicPart" :key="forYouStore.activeSet">
+        <div
+          class="perMusic"
+          v-for="image in forYouStore.currentImagesSet"
+          :key="image.id"
+        >
           <div class="picture">
             <img :src="image.url" alt="Music Image" />
             <div class="play-button">
@@ -174,10 +53,10 @@ const images3 = ref([
     </transition>
     <ul class="dots">
       <li
-        v-for="n in imagesCount"
+        v-for="n in forYouStore.imagesCount"
         :key="n"
-        @click="changeImageSet(n)"
-        :class="{ active: n === activeSet }"
+        @click="forYouStore.changeImageSetByIndex(n)"
+        :class="{ active: n === forYouStore.activeSet }"
       ></li>
     </ul>
   </div>
