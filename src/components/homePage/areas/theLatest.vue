@@ -189,7 +189,7 @@ watch(
         position: relative; // 为了定位播放按钮
         cursor: pointer;
         width: 20%;
-        height: 100%;
+        height: 70%;
         overflow: hidden; // 确保放大的图片不会超出这个容器
 
         img {
