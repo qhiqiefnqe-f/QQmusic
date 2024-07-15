@@ -1,16 +1,17 @@
 <script setup>
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
+const router = useRouter()
 
 const items = [
   { title: '首页', path: '/musicHouse/homePage' },
-  { title: '歌手', path: 'singerpage' },
-  { title: '新碟', path: 'newMusic' },
-  { title: '排行榜', path: 'rangepage' },
-  { title: '分类歌单', path: 'classifypage' },
-  { title: '雷达', path: 'radiopage' },
-  { title: 'MV', path: 'mvpage' },
-  { title: '数字专辑', path: 'albumpage' }
+  { title: '歌手', path: '/musicHouse/singerpage' },
+  { title: '新碟', path: '/musicHouse/newMusic' },
+  { title: '排行榜', path: '/musicHouse/rangepage' },
+  { title: '分类歌单', path: '/musicHouse/classifypage' },
+  { title: '雷达', path: '/musicHouse/radiopage' },
+  { title: 'MV', path: '/musicHouse/mvpage' },
+  { title: '数字专辑', path: '/musicHouse/albumpage' }
 ]
 
 const isActiveRoute = (itemPath) => {
@@ -25,6 +26,7 @@ const isActiveRoute = (itemPath) => {
         v-for="(item, index) in items"
         :key="index"
         :class="{ active: isActiveRoute(item.path) }"
+        @click="router.push(item.path)"
       >
         {{ item.title }}
       </li>

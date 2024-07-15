@@ -12,6 +12,7 @@ const router = createRouter({
         {
           path: 'musicHouse',
           component: () => import('../views/first/musicHouse.vue'),
+          redirect: '/musicHouse/homePage',
           children: [
             //首页，歌手...
             {
@@ -21,6 +22,30 @@ const router = createRouter({
             {
               path: 'singerPage',
               component: () => import('../views/second/singerPage.vue')
+            },
+            {
+              path: 'newMusic',
+              component: () => import('../views/second/newMusic.vue')
+            },
+            {
+              path: 'rangePage',
+              component: () => import('../views/second/rangePage.vue')
+            },
+            {
+              path: 'classifyPage',
+              component: () => import('../views/second/classifyPage.vue')
+            },
+            {
+              path: 'radioPage',
+              component: () => import('../views/second/radioPage.vue')
+            },
+            {
+              path: 'mvPage',
+              component: () => import('../views/second/mvPage.vue')
+            },
+            {
+              path: 'albumPage',
+              component: () => import('../views/second/albumPage.vue')
             }
           ]
         },
