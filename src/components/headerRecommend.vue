@@ -1,20 +1,33 @@
 <script setup>
+import { useRoute } from 'vue-router'
+const route = useRoute()
+
 const items = [
-  '首页',
-  '歌手',
-  '新碟',
-  '排行榜',
-  '分类歌单',
-  '雷达',
-  'MV',
-  '数字专辑'
+  { title: '首页', path: '/musicHouse/homePage' },
+  { title: '歌手', path: 'singerpage' },
+  { title: '新碟', path: 'newMusic' },
+  { title: '排行榜', path: 'rangepage' },
+  { title: '分类歌单', path: 'classifypage' },
+  { title: '雷达', path: 'radiopage' },
+  { title: 'MV', path: 'mvpage' },
+  { title: '数字专辑', path: 'albumpage' }
 ]
+
+const isActiveRoute = (itemPath) => {
+  return route.path === itemPath
+}
 </script>
 
 <template>
   <div class="headerRecommend">
     <ul>
-      <li v-for="(item, index) in items" :key="index">{{ item }}</li>
+      <li
+        v-for="(item, index) in items"
+        :key="index"
+        :class="{ active: isActiveRoute(item.path) }"
+      >
+        {{ item.title }}
+      </li>
     </ul>
   </div>
 </template>
@@ -50,6 +63,9 @@ const items = [
       &:hover {
         color: #31c27c;
       }
+    }
+    .active {
+      color: #31c27c;
     }
   }
 }

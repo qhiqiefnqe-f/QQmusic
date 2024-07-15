@@ -5,7 +5,7 @@ const router = useRouter()
 const route = useRoute()
 
 const items = [
-  { name: '音乐馆', path: '/musicHouse' },
+  { name: '音乐馆', path: '/musicHouse/homePage' },
   { name: '我的音乐', path: '/myMusic' },
   { name: '客户端', path: '/clientEnd' },
   { name: '开放平台', path: '/openPlatform' },

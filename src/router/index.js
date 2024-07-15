@@ -6,6 +6,7 @@ const router = createRouter({
     {
       path: '/', //layoutContainer
       component: () => import('../views/layoutContainer.vue'),
+      redirect: '/musicHouse/homePage',
       children: [
         //音乐馆，我的音乐...
         {
