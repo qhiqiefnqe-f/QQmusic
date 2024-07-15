@@ -41,7 +41,7 @@ function handleMouseOut() {
     if (!hoveringOverDropdown.value) {
       showDropdown.value = false
     }
-  }, 1000) // 100毫秒的延迟，可以根据需要调整
+  }, 1000) //
 }
 </script>
 
@@ -54,16 +54,17 @@ function handleMouseOut() {
           v-for="(item, index) in items"
           :key="index"
           :class="{ active: isActiveRoute(item.path) }"
-          @mouseover="index === 2 ? (showDropdown = true) : null"
-          @mouseout="index === 2 ? (showDropdown = false) : null"
+          @mouseenter="index === 2 ? (showDropdown = true) : null"
+          @mouseleave="index === 2 ? (showDropdown = false) : null"
           @click="setActive(index)"
         >
           {{ item.name }}
           <div
             v-if="index === 2 && showDropdown"
             class="khd-dropdown"
-            @mouseover="showDropdown = true"
-            @mouseout="handleMouseOut()"
+            @mouseenter="showDropdown = true"
+            @mouseover="index === 2 ? (showDropdown = true) : null"
+            @mouseleave="handleMouseOut()"
           >
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -267,6 +268,9 @@ button.vip {
     font-size: 12px;
     font-weight: 400;
     cursor: pointer;
+    &:hover {
+      background-image: linear-gradient(to right, #31c27c, #bbff8f);
+    }
   }
 }
 .search-icon {
