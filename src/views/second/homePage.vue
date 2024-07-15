@@ -2,6 +2,7 @@
 import musicListRecommend from '@/components/homePage/main/musicListRecommend.vue'
 import newMusic from '@/components/homePage/main/newMusic.vue'
 import rangePart from '@/components/homePage/main/rangePart.vue'
+import theFooter from '@/components/homePage/main/theFooter.vue'
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import rangePart from '@/components/homePage/main/rangePart.vue'
     <musicListRecommend></musicListRecommend>
     <newMusic></newMusic>
     <rangePart></rangePart>
+    <theFooter></theFooter>
   </div>
 </template>
 
