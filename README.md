@@ -1,16 +1,27 @@
 # summer_project
 
-This template should help get you started developing with Vue 3 in Vite.
+此项目仅为个人练习项目，对QQ音乐web端进行了静态页面的仿制
 
-## Recommended IDE Setup
+技术栈：Vue3+VueRouter+Pinia
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+# 项目截图
+**路由部分可正常切换但仅对首页部分的静态页面进行了仿制**
+## 歌单推荐
+*实现了歌单推荐部分的轮播图功能以及图片悬浮放大，按钮出现等细节*
+![alt text](src/assets/readme/17.09：22：08.jpg)
 
-## Customize configuration
+## 新歌首发
+*与上一部分功能基本相同*
+![alt text](src/assets/readme/17.09：22：21.png)
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## 排行榜
+![alt text](src/assets/readme/17.09：22：34.png)
 
-## Project Setup
+## Footer
+![alt text](src/assets/readme/17.09：22：40.png)
+
+
+## 项目启动
 
 ```sh
 pnpm install
